@@ -1,6 +1,5 @@
 module Integrate
   class Message
-    attr_reader :headers, :payload
-    
+    attr_accessor :headers, :payload
   end
 end
