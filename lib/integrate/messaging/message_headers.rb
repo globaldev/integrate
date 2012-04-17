@@ -11,10 +11,7 @@ module Integrate
     private
     
     def headers_valid?(headers_map)
-      headers_map.inject(false) do |result, (r, y)|
-        result = true if r.is_a?(String)
-      end
+      headers_map.each {|k, v| return false if !k.is_a?(String)}
     end
   end
-  
 end
