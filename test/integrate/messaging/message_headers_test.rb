@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative '../../../lib/integrate/messaging/message_headers'
 
 module Integrate
-  class TestMessageHeaders < MiniTest::Unit::TestCase
+  class MessageHeadersTest < MiniTest::Unit::TestCase
     def test_instantiation
       message_headers = MessageHeaders.new({"header_one" => "value_one"})
       refute_nil(message_headers)

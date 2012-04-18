@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative '../../../lib/integrate/messaging/message_builder'
 
 module Integrate
-  class TestMessageBuilder < MiniTest::Unit::TestCase
+  class MessageBuilderTest < MiniTest::Unit::TestCase
     def test_build_with_headers
       message = MessageBuilder.from_headers({"header_one" => "value_one"})
       refute_nil(message)
