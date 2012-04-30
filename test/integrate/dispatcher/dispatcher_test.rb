@@ -47,7 +47,7 @@ module Integrate
     
     def test_successful_dispatch
       dispatcher = Dispatcher.new
-      test_message = MessageBuilder.with_payload("test")
+      test_message = MessageBuilder.with_payload("test").build
       
       handler_one = MiniTest::Mock.new
       handler_one.expect :hash, "hash"

@@ -30,7 +30,7 @@ module Integrate
     end
     
     def test_send
-      message = MessageBuilder.with_payload("test")
+      message = MessageBuilder.with_payload("test").build
       
       handler = MiniTest::Mock.new
       handler.expect :hash, "hash"
