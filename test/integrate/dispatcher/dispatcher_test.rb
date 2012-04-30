@@ -63,7 +63,7 @@ module Integrate
     def test_error_dispatch
       dispatcher = Dispatcher.new
       test_message = MessageBuilder.with_payload("test")
-                  
+      
       assert_raises(StandardError) do
         dispatcher.call(test_message)
       end
