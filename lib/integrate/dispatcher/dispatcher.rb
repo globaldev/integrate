@@ -17,5 +17,25 @@ module Integrate
     def unregister_handler(handler)
       @handlers.delete(handler.hash)
     end
+    
+    # Will attempt to send message to at most
+    # one of its handlers
+    def call(message)
+      raise StandardError, "Dispatcher has no subscribers" if handlers.empty?
+      
+      send_successful = false
+      
+      handlers.each do |hash, handler|
+        break if send_successful
+        begin
+          handler.call(message)
+          send_successful = true
+        rescue StandardError => e
+          raise e
+        end
+      end
+      
+      send_successful
+    end
   end
 end

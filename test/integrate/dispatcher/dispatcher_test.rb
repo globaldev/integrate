@@ -3,8 +3,18 @@ require_relative '../../../lib/integrate/dispatcher/dispatcher'
 
 module Integrate
   class DispatcherTest < MiniTest::Unit::TestCase
+    
+    attr_accessor :dispatcher
+    
+    def setup
+      @dispatcher = Dispatcher.new
+    end
+
+    def teardown
+      @dispatcher = nil
+    end
+    
     def test_instantiation
-      dispatcher = Dispatcher.new
       refute_nil(dispatcher)
     end
     
@@ -31,7 +41,32 @@ module Integrate
     end
     
     class DummyMessageHandler
+      def call(message)
+      end
     end
     
+    def test_successful_dispatch
+      dispatcher = Dispatcher.new
+      test_message = MessageBuilder.with_payload("test")
+      
+      handler_one = MiniTest::Mock.new
+      handler_one.expect :hash, "hash"
+      handler_one.expect :call, true, [test_message]
+      
+      dispatcher.register_handler(handler_one)
+      
+      assert_equal(true, dispatcher.call(test_message))
+      
+      handler_one.verify
+    end
+    
+    def test_error_dispatch
+      dispatcher = Dispatcher.new
+      test_message = MessageBuilder.with_payload("test")
+                  
+      assert_raises(StandardError) do
+        dispatcher.call(test_message)
+      end
+    end
   end
 end
