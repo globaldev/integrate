@@ -23,7 +23,6 @@ module Integrate
     def test_subscribe
       subscribing_handler = MiniTest::Mock.new
       subscribing_handler.expect :hash, 3735928559
-      subscribing_handler.expect :call, true, [message]
       
       dispatcher = @channel.dispatcher
       
@@ -47,7 +46,6 @@ module Integrate
     def test_unsubscribe
       subscribing_handler = MiniTest::Mock.new
       subscribing_handler.expect :hash, 3735928559
-      subscribing_handler.expect :call, true, [message]
       
       dispatcher = @channel.dispatcher
       
