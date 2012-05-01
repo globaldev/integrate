@@ -51,7 +51,7 @@ module Integrate
       test_message = MessageBuilder.with_payload("test").build
       
       handler_one = MiniTest::Mock.new
-      handler_one.expect :hash, "hash"
+      handler_one.expect :hash, 3735928559
       handler_one.expect :call, true, [test_message]
       
       dispatcher.register_handler(handler_one)

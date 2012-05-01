@@ -21,20 +21,20 @@ module Integrate
     
     def test_subscribe
       subscribing_handler = MiniTest::Mock.new
-      subscribing_handler.expect :hash, "one"
+      subscribing_handler.expect :hash, 3735928559
       subscribing_handler.expect :call, true, [message]
       
       dispatcher = @channel.dispatcher
       
       @channel.subscribe(subscribing_handler)
-      assert_equal({"one" => subscribing_handler}, dispatcher.handlers)
+      assert_equal({3735928559 => subscribing_handler}, dispatcher.handlers)
     end
     
     def test_send
       message = MessageBuilder.with_payload("test").build
       
       handler = MiniTest::Mock.new
-      handler.expect :hash, "hash"
+      handler.expect :hash, 3735928559
       handler.expect :call, true, [message]
       
       @channel.subscribe(handler)
@@ -45,13 +45,13 @@ module Integrate
     
     def test_unsubscribe
       subscribing_handler = MiniTest::Mock.new
-      subscribing_handler.expect :hash, "one"
+      subscribing_handler.expect :hash, 3735928559
       subscribing_handler.expect :call, true, [message]
       
       dispatcher = @channel.dispatcher
       
       @channel.subscribe(subscribing_handler)
-      assert_equal({"one" => subscribing_handler}, dispatcher.handlers)
+      assert_equal({3735928559 => subscribing_handler}, dispatcher.handlers)
       @channel.unsubscribe(subscribing_handler)
       assert_equal({}, dispatcher.handlers)
     end
