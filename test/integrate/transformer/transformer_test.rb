@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require_relative '../../../lib/integrate/messaging/message'
 require_relative '../../../lib/integrate/transformer/transformer'
 
 module Integrate

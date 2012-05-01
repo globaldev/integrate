@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../../../lib/integrate/channel/channel'
+require_relative '../../../lib/integrate/messaging/message_builder'
 
 module Integrate
   class ChannelTest < MiniTest::Unit::TestCase

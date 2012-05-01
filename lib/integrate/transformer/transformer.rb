@@ -1,3 +1,5 @@
+require_relative '../handler/message_handler'
+
 module Integrate
   class Transformer < MessageHandler
     

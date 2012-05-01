@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../../../lib/integrate/dispatcher/dispatcher'
+require_relative '../../../lib/integrate/messaging/message_builder'
 
 module Integrate
   class DispatcherTest < MiniTest::Unit::TestCase
