@@ -7,6 +7,6 @@ module Integrate
       result = transform(message)
       super(result)
     end
-  
+    
   end
 end

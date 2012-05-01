@@ -8,6 +8,6 @@ module Integrate
       transformer = Transformer.new
       refute_nil(transformer)
     end
-
+    
   end
 end

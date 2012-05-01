@@ -21,5 +21,6 @@ module Integrate
     def send(message)
       dispatcher.call(message)
     end
+    
   end
 end
