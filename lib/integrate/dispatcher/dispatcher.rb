@@ -24,20 +24,18 @@ module Integrate
     # one of its handlers
     def call(message)
       raise StandardError, "Dispatcher has no subscribers" if handlers.empty?
-      
-      send_successful = false
-      
-      handlers.each do |handler|
-        break if send_successful
-        begin
-          handler.call(message)
-          send_successful = true
-        rescue StandardError => e
-          raise e
-        end
-      end
-      
-      send_successful
+      handlers.any? {|handler| call_with_error_handling(handler, message)}
     end
+    
+    private
+    def call_with_error_handling(handler, message)
+      handler.call(message)
+      true
+    rescue StandardError => e
+      # log here
+      raise # while in early development
+      false
+    end
+    
   end
 end
