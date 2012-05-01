@@ -6,17 +6,15 @@ module Integrate
   class MessageHandlerTest < MiniTest::Unit::TestCase
     
     def test_reply_sent_if_output_channel
-      transformer = PayloadUpcasingTransformer.new
-      
-      input_channel = Channel.new
-      input_channel.subscribe(transformer)
-      
       incoming_message = {"payload" => "test"}
       
       output_channel = MiniTest::Mock.new
       output_channel.expect :send, true, [incoming_message]
       
-      transformer.output_channel = output_channel
+      transformer = PayloadUpcasingTransformer.new(output_channel)
+      
+      input_channel = Channel.new
+      input_channel.subscribe(transformer)
       
       input_channel.send(incoming_message)
       
