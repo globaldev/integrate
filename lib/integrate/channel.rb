@@ -1,4 +1,4 @@
-require_relative '../dispatcher/dispatcher'
+require_relative 'dispatcher'
 
 module Integrate
   class Channel

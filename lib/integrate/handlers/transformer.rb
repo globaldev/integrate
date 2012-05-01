@@ -1,7 +1,7 @@
-require_relative '../handler/message_handler'
+require_relative '../handler'
 
 module Integrate
-  class Transformer < MessageHandler
+  class Transformer < Handler
     
     def call(message)
       result = transform(message)

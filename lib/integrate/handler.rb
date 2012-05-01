@@ -1,5 +1,5 @@
 module Integrate
-  class MessageHandler
+  class Handler
     
     attr_reader :output_channel
     private :output_channel

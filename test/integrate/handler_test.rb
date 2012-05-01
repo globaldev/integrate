@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require_relative '../../../lib/integrate/transformer/transformer'
-require_relative '../../../lib/integrate/channel/channel'
+require_relative '../../lib/integrate/handlers/transformer'
+require_relative '../../lib/integrate/channel'
 
 module Integrate
-  class MessageHandlerTest < MiniTest::Unit::TestCase
+  class HandlerTest < MiniTest::Unit::TestCase
     
     def test_reply_sent_if_output_channel
       incoming_message = {"payload" => "test"}

@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../../../lib/integrate/transformer/transformer'
+require_relative '../../../lib/integrate/handlers/transformer'
 
 module Integrate
   class TransformerTest < MiniTest::Unit::TestCase
