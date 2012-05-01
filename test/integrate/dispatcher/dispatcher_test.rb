@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'set'
 require_relative '../../../lib/integrate/dispatcher/dispatcher'
-require_relative '../../../lib/integrate/messaging/message_builder'
 
 module Integrate
   class DispatcherTest < MiniTest::Unit::TestCase
@@ -48,7 +47,7 @@ module Integrate
     
     def test_successful_dispatch
       dispatcher = Dispatcher.new
-      test_message = MessageBuilder.with_payload("test").build
+      test_message = {"payload" => "test"}
       
       handler_one = MiniTest::Mock.new
       handler_one.expect :hash, 3735928559
@@ -63,7 +62,7 @@ module Integrate
     
     def test_error_dispatch
       dispatcher = Dispatcher.new
-      test_message = MessageBuilder.with_payload("test")
+      test_message = {"payload" => "test"}
       
       assert_raises(StandardError) do
         dispatcher.call(test_message)

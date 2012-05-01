@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'set'
 require_relative '../../../lib/integrate/channel/channel'
-require_relative '../../../lib/integrate/messaging/message_builder'
 
 module Integrate
   class ChannelTest < MiniTest::Unit::TestCase
@@ -31,7 +30,7 @@ module Integrate
     end
     
     def test_send
-      message = MessageBuilder.with_payload("test").build
+      message = {"payload" => "test"}
       
       handler = MiniTest::Mock.new
       handler.expect :hash, 3735928559

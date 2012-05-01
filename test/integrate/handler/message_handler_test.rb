@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require_relative '../../../lib/integrate/messaging/message_builder'
 require_relative '../../../lib/integrate/transformer/transformer'
 require_relative '../../../lib/integrate/channel/channel'
 
@@ -8,16 +7,17 @@ module Integrate
     
     def test_reply_sent_if_output_channel
       transformer = PayloadUpcasingTransformer.new
-
+      
       input_channel = Channel.new
       input_channel.subscribe(transformer)
       
+      incoming_message = {"payload" => "test"}
+      
       output_channel = MiniTest::Mock.new
-      output_channel.expect :send, true, [Message]
+      output_channel.expect :send, true, [incoming_message]
       
       transformer.output_channel = output_channel
       
-      incoming_message = MessageBuilder.with_payload("test").build
       input_channel.send(incoming_message)
       
       output_channel.verify
@@ -25,7 +25,9 @@ module Integrate
     
     class PayloadUpcasingTransformer < Transformer
       def transform(message)
-        MessageBuilder.with_payload(message.payload.upcase).build
+        message.dup.tap do |copy|
+          copy["payload"] = message["payload"]
+        end
       end
     end
     
