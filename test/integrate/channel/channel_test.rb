@@ -30,7 +30,7 @@ module Integrate
     end
     
     def test_send
-      message = MessageBuilder.with_payload("test")
+      message = MessageBuilder.with_payload("test").build
       
       handler = MiniTest::Mock.new
       handler.expect :hash, "hash"
@@ -42,7 +42,7 @@ module Integrate
       handler.verify
     end
     
-    def test_subscribe
+    def test_unsubscribe
       subscribing_handler = MiniTest::Mock.new
       subscribing_handler.expect :hash, "one"
       subscribing_handler.expect :call, true, [message]
