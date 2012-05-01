@@ -1,6 +1,6 @@
 require "bundler/gem_tasks"
-require 'rake/testtask'
 
-Rake::TestTask.new do |t|
-  t.pattern = "test/**/*_test.rb"
+desc "Run tests"
+task :test do
+  load "test/runner.rb"
 end
