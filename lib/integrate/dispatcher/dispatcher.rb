@@ -1,9 +1,11 @@
+require 'set'
+
 module Integrate
   class Dispatcher
     
     def initialize
       # Registered message handlers
-      @handlers = {}
+      @handlers = Set[]
     end
     
     def handlers
@@ -11,11 +13,11 @@ module Integrate
     end
     
     def register_handler(handler)
-      @handlers[handler.hash] = handler
+      @handlers.add(handler)
     end
     
     def unregister_handler(handler)
-      @handlers.delete(handler.hash)
+      @handlers.delete(handler)
     end
     
     # Will attempt to send message to at most
@@ -25,7 +27,7 @@ module Integrate
       
       send_successful = false
       
-      handlers.each do |hash, handler|
+      handlers.each do |handler|
         break if send_successful
         begin
           handler.call(message)

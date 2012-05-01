@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'set'
 require_relative '../../../lib/integrate/channel/channel'
 require_relative '../../../lib/integrate/messaging/message_builder'
 
@@ -27,7 +28,7 @@ module Integrate
       dispatcher = @channel.dispatcher
       
       @channel.subscribe(subscribing_handler)
-      assert_equal({3735928559 => subscribing_handler}, dispatcher.handlers)
+      assert_equal(Set[subscribing_handler], dispatcher.handlers)
     end
     
     def test_send
@@ -51,9 +52,9 @@ module Integrate
       dispatcher = @channel.dispatcher
       
       @channel.subscribe(subscribing_handler)
-      assert_equal({3735928559 => subscribing_handler}, dispatcher.handlers)
+      assert_equal(Set[subscribing_handler], dispatcher.handlers)
       @channel.unsubscribe(subscribing_handler)
-      assert_equal({}, dispatcher.handlers)
+      assert_equal(Set[], dispatcher.handlers)
     end
   end
 end
