@@ -1,0 +1,14 @@
+require 'minitest/autorun'
+require_relative '../../../lib/integrate/messaging/message'
+require_relative '../../../lib/integrate/transformer/transformer'
+
+module Integrate
+  class TransformerTest < MiniTest::Unit::TestCase
+    
+    def test_instantiation
+      transformer = Transformer.new
+      refute_nil(transformer)
+    end
+
+  end
+end
