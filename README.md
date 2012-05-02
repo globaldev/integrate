@@ -1,6 +1,11 @@
-## Integrate [![Build History][2]][1]
+# Integrate
 
-- Enables lightweight messaging within Ruby applications using a [Pipes and Filters][pipesandfilters] architecture.
+[![Build History][2]][1]
+
+Integrate is an Integration Framework for Ruby.
+
+- Enables lightweight messaging within Ruby applications using a
+  [Pipes and Filters][pipesandfilters] architecture.
 - Provides support for [Enterprise Integration Patterns][eaipatterns].
 - Is a work in progress.
 
