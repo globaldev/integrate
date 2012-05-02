@@ -5,6 +5,7 @@ module Integrate
     
     def initialize(*args, &block)
       @block = block.nil? && args.last.respond_to?(:call) ? args.pop : block
+      raise ArgumentError, "BlockTransformer requires a block" unless @block
       super(*args)
     end
     
