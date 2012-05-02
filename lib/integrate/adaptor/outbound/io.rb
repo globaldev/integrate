@@ -9,7 +9,7 @@ module Integrate
         def initialize(io, separator=$/, options)
           @io = io
           @separator = separator
-          options[:in].subscribe(self)
+          options[:in].register(self)
         end
         
         def call(message)

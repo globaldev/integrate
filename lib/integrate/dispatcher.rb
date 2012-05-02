@@ -12,11 +12,11 @@ module Integrate
       @handlers.dup
     end
 
-    def register_handler(handler)
+    def register(handler)
       @handlers.add(handler)
     end
 
-    def unregister_handler(handler)
+    def unregister(handler)
       @handlers.delete(handler)
     end
 

@@ -11,7 +11,7 @@ module Integrate
         # [:key]      (required) the routing key for published messages
         #
         def initialize(options)
-          options[:in].subscribe(self)
+          options[:in].register(self)
           @exchange_name = options[:exchange] || ""
           @routing_key = options[:key]
           @client = Bunny.new

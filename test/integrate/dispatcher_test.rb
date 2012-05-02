@@ -22,7 +22,7 @@ module Integrate
     def test_register_message_handler
       dispatcher = Dispatcher.new
       dummy_handler = DummyMessageHandler.new
-      dispatcher.register_handler(dummy_handler)
+      dispatcher.register(dummy_handler)
       assert_equal(Set[dummy_handler], dispatcher.handlers)
     end
 
@@ -31,12 +31,12 @@ module Integrate
       handler_one = DummyMessageHandler.new
       handler_two = DummyMessageHandler.new
 
-      dispatcher.register_handler(handler_one)
-      dispatcher.register_handler(handler_two)
+      dispatcher.register(handler_one)
+      dispatcher.register(handler_two)
 
       assert_equal(Set[handler_one, handler_two], dispatcher.handlers)
 
-      dispatcher.unregister_handler(handler_one)
+      dispatcher.unregister(handler_one)
       assert_equal(Set[handler_two], dispatcher.handlers)
     end
 
@@ -53,7 +53,7 @@ module Integrate
       handler_one.expect :hash, 3735928559
       handler_one.expect :call, true, [test_message]
 
-      dispatcher.register_handler(handler_one)
+      dispatcher.register(handler_one)
 
       assert_equal(true, dispatcher.call(test_message))
 

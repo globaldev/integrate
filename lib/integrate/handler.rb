@@ -10,7 +10,7 @@ module Integrate
     #
     def initialize(options)
       @output_channel = options[:out]
-      options[:in].subscribe(self)
+      options[:in].register(self)
     end
 
     def call(message)

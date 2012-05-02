@@ -9,13 +9,13 @@ module Integrate
       @dispatcher = Dispatcher.new
     end
 
-    def subscribe(message_handler)
-      dispatcher.register_handler(message_handler)
+    def register(handler)
+      dispatcher.register(handler)
       # TODO Log handler registration with count.
     end
 
-    def unsubscribe(message_handler)
-      dispatcher.unregister_handler(message_handler)
+    def unregister(handler)
+      dispatcher.unregister(handler)
     end
 
     def send(message)

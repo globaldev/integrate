@@ -19,13 +19,13 @@ module Integrate
       refute_nil(@channel)
     end
 
-    def test_subscribe
+    def test_register
       subscribing_handler = MiniTest::Mock.new
       subscribing_handler.expect :hash, 3735928559
 
       dispatcher = @channel.dispatcher
 
-      @channel.subscribe(subscribing_handler)
+      @channel.register(subscribing_handler)
       assert_equal(Set[subscribing_handler], dispatcher.handlers)
     end
 
@@ -36,21 +36,21 @@ module Integrate
       handler.expect :hash, 3735928559
       handler.expect :call, true, [message]
 
-      @channel.subscribe(handler)
+      @channel.register(handler)
       @channel.send(message)
 
       handler.verify
     end
 
-    def test_unsubscribe
+    def test_unregister
       subscribing_handler = MiniTest::Mock.new
       subscribing_handler.expect :hash, 3735928559
 
       dispatcher = @channel.dispatcher
 
-      @channel.subscribe(subscribing_handler)
+      @channel.register(subscribing_handler)
       assert_equal(Set[subscribing_handler], dispatcher.handlers)
-      @channel.unsubscribe(subscribing_handler)
+      @channel.unregister(subscribing_handler)
       assert_equal(Set[], dispatcher.handlers)
     end
   end
