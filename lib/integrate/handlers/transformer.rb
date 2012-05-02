@@ -17,6 +17,7 @@ module Integrate
     # [:out] the output channel
     #
     def initialize(options, &block)
+      raise ArgumentError, "Transformer requires an output channel" unless options[:out]
       super
       @block = block if block
     end
