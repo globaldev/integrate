@@ -14,7 +14,7 @@ module Integrate
 
     # options should be a hash, with the following available options:
     # [:in]  (required) the input channel
-    # [:out] the output channel
+    # [:out] (required) the output channel
     #
     def initialize(options, &block)
       raise ArgumentError, "Transformer requires an output channel" unless options[:out]
