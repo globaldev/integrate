@@ -8,7 +8,7 @@ module Integrate
   # The Splitter class is available as a superclass for any kind of splitter,
   # simply subclass and override the #split method.
   #
-  # Splitter my be used without subclassing by supplying a block to ::new,
+  # Splitter may be used without subclassing by supplying a block to ::new,
   # the block will then be invoked to perform the message splitting.
   #
   class Splitter < Handler

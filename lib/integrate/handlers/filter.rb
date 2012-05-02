@@ -8,7 +8,7 @@ module Integrate
   # The Filter class is available as a superclass for any kind of filter,
   # simply subclass and override the #allow? method.
   #
-  # Filter my be used without subclassing by supplying a block to ::new,
+  # Filter may be used without subclassing by supplying a block to ::new,
   # the block will then be invoked to perform the message filtering.
   #
   class Filter < Handler

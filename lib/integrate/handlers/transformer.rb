@@ -7,7 +7,7 @@ module Integrate
   # The Transformer class is available as a superclass for any kind of
   # transformer, simply subclass and override the #transform method.
   #
-  # Transformer my be used without subclassing by supplying a block to ::new,
+  # Transformer may be used without subclassing by supplying a block to ::new,
   # the block will then be invoked to perform the message transformation.
   #
   class Transformer < Handler
