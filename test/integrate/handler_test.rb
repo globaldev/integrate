@@ -14,8 +14,6 @@ module Integrate
 
       transformer = PayloadUpcasingTransformer.new(in: input_channel, out: output_channel)
 
-      input_channel.subscribe(transformer)
-
       input_channel.send(incoming_message)
 
       output_channel.verify
