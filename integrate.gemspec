@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "integrate/version"
 
 Gem::Specification.new do |s|
   s.name        = "integrate"
-  s.version     = Integrate::VERSION
+  s.version     = "0.0.1"
   s.authors     = ["Rob Young"]
   s.email       = ["robyoung26@gmail.com"]
   s.homepage    = ""
