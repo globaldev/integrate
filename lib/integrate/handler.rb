@@ -4,8 +4,13 @@ module Integrate
     attr_reader :output_channel
     private :output_channel
 
-    def initialize(output_channel=nil)
-      @output_channel = output_channel
+    # options should be a hash, with the following available options:
+    # [:in]  (required) the input channel
+    # [:out] the output channel
+    #
+    def initialize(options)
+      @output_channel = options[:out]
+      options[:in].subscribe(self)
     end
 
     def call(message)

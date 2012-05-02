@@ -10,10 +10,10 @@ module Integrate
 
       output_channel = MiniTest::Mock.new
       output_channel.expect :send, true, [incoming_message]
-
-      transformer = PayloadUpcasingTransformer.new(output_channel)
-
       input_channel = Channel.new
+
+      transformer = PayloadUpcasingTransformer.new(in: input_channel, out: output_channel)
+
       input_channel.subscribe(transformer)
 
       input_channel.send(incoming_message)

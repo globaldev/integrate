@@ -3,27 +3,24 @@ require_relative "../lib/integrate/adaptor/outbound/io"
 require_relative "../lib/integrate/handlers/block_transformer"
 require_relative "../lib/integrate/channel"
 
-outbound_adaptor = Integrate::Adaptor::Outbound::IO.new(STDOUT)
+include Integrate
 
-reverse_to_stdout = Integrate::Channel.new
-reverse_to_stdout.subscribe(outbound_adaptor)
+inbound = Channel.new
+connecting = Channel.new
+outbound = Channel.new
 
-reverse = Integrate::BlockTransformer.new(reverse_to_stdout) do |message|
-  message["payload"] = message["payload"].reverse
-  message
-end
+stdin = Adaptor::Inbound::IO.new(STDIN, out: inbound)
 
-upcase_to_reverse = Integrate::Channel.new
-upcase_to_reverse.subscribe(reverse)
-
-upcase = Integrate::BlockTransformer.new(upcase_to_reverse) do |message|
+upcaser = BlockTransformer.new(in: inbound, out: connecting) do |message|
   message["payload"] = message["payload"].upcase
   message
 end
 
-stdin_to_upcase = Integrate::Channel.new
-stdin_to_upcase.subscribe(upcase)
+reverser = BlockTransformer.new(in: connecting, out: outbound) do |message|
+  message["payload"] = message["payload"].reverse
+  message
+end
 
-inbound_adaptor = Integrate::Adaptor::Inbound::IO.new(STDIN, stdin_to_upcase)
+stdout = Adaptor::Outbound::IO.new(STDOUT, in: outbound)
 
-inbound_adaptor.start
+stdin.start

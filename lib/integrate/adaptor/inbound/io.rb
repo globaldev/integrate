@@ -3,10 +3,13 @@ module Integrate
     module Inbound
       class IO
         
-        def initialize(io, separator=$/, output_channel)
+        # options should be a hash, with the following available options:
+        # [:out] (required) the output channel
+        #
+        def initialize(io, separator=$/, options)
           @io = io
           @separator = separator
-          @output_channel = output_channel
+          @output_channel = options[:out]
         end
         
         def start

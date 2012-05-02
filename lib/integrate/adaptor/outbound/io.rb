@@ -3,9 +3,13 @@ module Integrate
     module Outbound
       class IO
         
-        def initialize(io, separator=$/)
+        # options should be a hash, with the following available options:
+        # [:in] (required) the input channel
+        #
+        def initialize(io, separator=$/, options)
           @io = io
           @separator = separator
+          options[:in].subscribe(self)
         end
         
         def call(message)
