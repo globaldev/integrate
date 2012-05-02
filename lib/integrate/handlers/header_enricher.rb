@@ -27,15 +27,8 @@ module Integrate
     
     def transform(message)
       result = message.dup
-      
       @headers.each do |header, val|
-        result[header] = 
-        case result[header]
-        when nil
-          val
-        else
-          @overwrite ? val : result[header]
-        end
+        result[header] = val unless result[header] && !@overwrite
       end
       result
     end
