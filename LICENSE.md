@@ -1,11 +1,3 @@
-## Integrate [![Build History][2]][1]
-
-- Enables lightweight messaging within Ruby applications using a [Pipes and Filters][pipesandfilters] architecture.
-- Provides support for [Enterprise Integration Patterns][eaipatterns].
-- Is a work in progress.
-
-## Licence
-
 (The MIT License)
 
 Copyright (c) 2012 Global Personals, Ltd.
@@ -27,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-[pipesandfilters]: http://www.eaipatterns.com/PipesAndFilters.html "Pipes and Filters"
-[eaipatterns]: http://www.eaipatterns.com/ "Enterprise Integration Patterns"
-[1]: http://travis-ci.org/robyoung26/integrate
-[2]: https://secure.travis-ci.org/robyoung26/integrate.png?branch=master
