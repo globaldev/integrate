@@ -13,31 +13,30 @@ channels.
 
 Integrate follows [Enterprise Integration Patterns][eai-patterns].
 
-### Channels
-
-Use channels to connect components, where one component writes information to
-the channel and the other one reads that information from the channel.
-
 ### Messages
 
-A message is a data record that components share over a channel.
+A Message is a generic container for data consisting of a payload and headers
+that Message Producers and Message Consumers share over a Channel.
+
+### Channels
+
+Use a Channel to decouple Message Producers from Message Consumers.
+
+### Routers
+
+Use a Router to route a Message to a Channel based upon that Message's
+payload or headers.
 
 ### Transformers
 
-#### Content Enricher
-
-Use a Content Enricher to access an external data source in order to augment
-a message with missing information.
-
-#### Content Filter
-
-Use a Content Filter to remove unimportant data items from a message leaving
-only important items or to simplify the structure of a message.
+A Transformer allows loose-coupling of Message Producers and Message Consumers
+in a Workflow. Transformers can be added between Message Producers and Message
+Consumers so that those Components need not know what is expected by the next
+Component in a workflow.
 
 ### Endpoints
 
-Use an Endpoint to connect a workflow to a messaging channel so that it can
-send and receive messages.
+Use an Endpoint to connect the various messaging Components to Channels.
 
 ## Licence
 
