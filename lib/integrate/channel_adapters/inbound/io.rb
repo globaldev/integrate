@@ -1,7 +1,7 @@
 require_relative '../../options'
 
 module Integrate
-  module Adapters
+  module ChannelAdapters
     module Inbound
       class IO
         extend Options
@@ -13,7 +13,8 @@ module Integrate
         #
         def initialize(io, separator=$/, options)
           super(options)
-          @io = io
+
+          @io        = io
           @separator = separator
         end
 
