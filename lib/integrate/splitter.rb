@@ -1,4 +1,4 @@
-require_relative '../handler'
+require 'integrate/abstract_handler'
 
 module Integrate
 
@@ -11,7 +11,7 @@ module Integrate
   # Splitter may be used without subclassing by supplying a block to ::new,
   # the block will then be invoked to perform the message splitting.
   #
-  class Splitter < Handler
+  class Splitter < AbstractHandler
 
     def call(message)
       split.each { super(message) }

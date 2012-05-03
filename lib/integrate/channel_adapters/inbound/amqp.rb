@@ -2,7 +2,7 @@ require 'bunny'
 require_relative '../../options'
 
 module Integrate
-  module Adapters
+  module ChannelAdapters
     module Inbound
       class AMQP
         extend Options
@@ -16,6 +16,7 @@ module Integrate
         #
         def initialize(options)
           super
+
           @client = Bunny.new
         end
 

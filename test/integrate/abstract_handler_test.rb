@@ -1,12 +1,13 @@
-require 'minitest/autorun'
-require_relative '../../lib/integrate/handlers/transformer'
-require_relative '../../lib/integrate/channel'
+require_relative '../helper'
+
+require 'integrate/channel'
+require 'integrate/abstract_transformer'
 
 module Integrate
-  class HandlerTest < MiniTest::Unit::TestCase
+  class AbstractHandlerTest < MiniTest::Unit::TestCase
 
     def test_reply_sent_if_output_channel
-      incoming_message = {"payload" => "test"}
+      incoming_message = { "payload" => "test" }
 
       output_channel = MiniTest::Mock.new
       output_channel.expect :send, true, [incoming_message]
@@ -20,7 +21,7 @@ module Integrate
       output_channel.verify
     end
 
-    class PayloadUpcasingTransformer < Transformer
+    class PayloadUpcasingTransformer < AbstractTransformer
       def transform(message)
         message.dup.tap do |copy|
           copy["payload"] = message["payload"]

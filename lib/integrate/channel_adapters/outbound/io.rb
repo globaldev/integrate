@@ -1,7 +1,7 @@
 require_relative '../../options'
 
 module Integrate
-  module Adapters
+  module ChannelAdapters
     module Outbound
       class IO
         extend Options
@@ -13,14 +13,17 @@ module Integrate
         #
         def initialize(io, separator=$/, options)
           super(options)
+
           input_channel.register(self)
-          @io = io
+
+          @io        = io
           @separator = separator
         end
 
         def call(message)
           output = message["payload"].to_s
           output += @separator if @separator
+
           @io.write(output)
         end
 

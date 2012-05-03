@@ -1,6 +1,7 @@
-require 'minitest/autorun'
+require_relative '../helper'
+
 require 'set'
-require_relative '../../lib/integrate/dispatcher'
+require 'integrate/dispatcher'
 
 module Integrate
   class DispatcherTest < MiniTest::Unit::TestCase
@@ -20,14 +21,15 @@ module Integrate
     end
 
     def test_register_message_handler
-      dispatcher = Dispatcher.new
+      dispatcher    = Dispatcher.new
       dummy_handler = DummyMessageHandler.new
+
       dispatcher.register(dummy_handler)
       assert_equal(Set[dummy_handler], dispatcher.handlers)
     end
 
     def test_remove_message_handler
-      dispatcher = Dispatcher.new
+      dispatcher  = Dispatcher.new
       handler_one = DummyMessageHandler.new
       handler_two = DummyMessageHandler.new
 
@@ -46,8 +48,8 @@ module Integrate
     end
 
     def test_successful_dispatch
-      dispatcher = Dispatcher.new
-      test_message = {"payload" => "test"}
+      dispatcher   = Dispatcher.new
+      test_message = { "payload" => "test" }
 
       handler_one = MiniTest::Mock.new
       handler_one.expect :hash, 3735928559
@@ -61,8 +63,8 @@ module Integrate
     end
 
     def test_error_dispatch
-      dispatcher = Dispatcher.new
-      test_message = {"payload" => "test"}
+      dispatcher   = Dispatcher.new
+      test_message = { "payload" => "test" }
 
       assert_raises(StandardError) do
         dispatcher.call(test_message)
