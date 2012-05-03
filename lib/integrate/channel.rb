@@ -12,7 +12,10 @@ module Integrate
     end
 
     def register(handler)
-      logger.debug("registering #{handler.id} with #{id}") if logger
+      if logger
+        logger.debug("Registering Handler [#{handler.id}] with Channel " +
+                     "[#{id}]")
+      end
       dispatcher.register(handler)
     end
 

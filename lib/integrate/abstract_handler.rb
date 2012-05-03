@@ -17,6 +17,10 @@ module Integrate
     end
 
     def call(message)
+      if logger
+        logger.debug("Handler [#{@id}] sending Message [#{message.inspect}] " + 
+                     "to Channel [#{output_channel.id}]") 
+      end
       output_channel.send(message) if output_channel
     end
 
