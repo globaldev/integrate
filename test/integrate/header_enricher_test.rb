@@ -1,6 +1,6 @@
-require_relative '../../helper'
+require_relative '../helper'
 
-require 'integrate/handlers/header_enricher'
+require 'integrate/header_enricher'
 require 'integrate/channel'
 
 module Integrate

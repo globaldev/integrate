@@ -1,7 +1,7 @@
 require_relative '../helper'
 
 require 'integrate/channel'
-require 'integrate/handlers/transformer'
+require 'integrate/transformer'
 
 module Integrate
   class AbstractHandlerTest < MiniTest::Unit::TestCase

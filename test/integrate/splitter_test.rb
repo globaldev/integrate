@@ -1,6 +1,6 @@
-require_relative '../../helper'
+require_relative '../helper'
 
-require 'integrate/handlers/splitter'
+require 'integrate/splitter'
 require 'integrate/channel'
 
 module Integrate

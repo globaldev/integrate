@@ -1,6 +1,6 @@
-require_relative '../../helper'
+require_relative '../helper'
 
-require 'integrate/handlers/transformer'
+require 'integrate/transformer'
 require 'integrate/channel'
 
 module Integrate
