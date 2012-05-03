@@ -94,5 +94,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 [pipes-and-filters]: http://www.eaipatterns.com/PipesAndFilters.html "Pipes and Filters"
-[1]: http://travis-ci.org/robyoung26/integrate
-[2]: https://secure.travis-ci.org/robyoung26/integrate.png?branch=master
+[1]: http://travis-ci.org/globaldev/integrate
+[2]: https://secure.travis-ci.org/globaldev/integrate.png?branch=master
