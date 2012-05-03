@@ -1,22 +1,17 @@
+require_relative 'options'
+
 module Integrate
-  
-  # A Component describes any part of the integration workflow, and 
+
+  # A Component describes any part of the integration workflow, and
   # encapsulates attributes common to all components.
   #
   class Component
+    extend Options
 
-    attr_reader :id
+    option :id, public: true, default: -> {self.class.generate_id}
 
-    # options should be a hash, with the following available options:
-    # [:id] the component id
-    #
-    def initialize(options={})
-      @id = options[:id] || self.class.generate_id
-    end
-    
     def self.generate_id
-      @counter ||= -1
-      @counter += 1
+      @counter = @counter ? @counter + 1 : 0
       "#{name}-#{@counter}"
     end
 

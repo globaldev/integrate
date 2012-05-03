@@ -13,16 +13,14 @@ module Integrate
   #
   class HeaderEnricher < Transformer
     
-    def initialize(options)
-      check_options(options)
-      super(options)
-      @headers = options[:headers]
-      @overwrite = options[:overwrite] || false
-    end
+    option :headers, required: true
+    option :overwrite
     
-    def check_options(options)
-      raise ArgumentError, "HeaderEnricher must be provided :headers" unless options[:headers]
-      raise ArgumentError, "HeaderEnricher is unable to enrich payload" if options[:headers]["payload"]
+    def initialize(options)
+      super
+      if headers.key?("payload")
+        raise ArgumentError, "HeaderEnricher is unable to enrich payload"
+      end
     end
     
     def transform(message)

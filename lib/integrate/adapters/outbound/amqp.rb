@@ -1,9 +1,15 @@
 require 'bunny'
+require_relative '../../options'
 
 module Integrate
   module Adapters
     module Outbound
       class AMQP
+        extend Options
+
+        option :in, :input_channel, required: true
+        option :exchange, :exchange_name, default: ""
+        option :key, :routing_key, required: true
 
         # options should be a hash, with the following available options:
         # [:in]       (required) the input channel
@@ -11,9 +17,8 @@ module Integrate
         # [:key]      (required) the routing key for published messages
         #
         def initialize(options)
-          options[:in].register(self)
-          @exchange_name = options[:exchange] || ""
-          @routing_key = options[:key]
+          super
+          input_channel.register(self)
           @client = Bunny.new
         end
 

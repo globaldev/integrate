@@ -13,11 +13,6 @@ module Integrate
   #
   class Splitter < Handler
 
-    def initialize(options, &block)
-      super
-      @block = block if block
-    end
-
     def call(message)
       split.each { super(message) }
     end

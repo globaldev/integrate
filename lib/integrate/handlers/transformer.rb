@@ -12,15 +12,7 @@ module Integrate
   #
   class Transformer < Handler
 
-    # options should be a hash, with the following available options:
-    # [:in]  (required) the input channel
-    # [:out] (required) the output channel
-    #
-    def initialize(options, &block)
-      raise ArgumentError, "Transformer requires an output channel" unless options[:out]
-      super
-      @block = block if block
-    end
+    option :out, :output_channel, required: true
 
     def call(message)
       result = transform(message)

@@ -13,15 +13,6 @@ module Integrate
   #
   class Filter < Handler
 
-    # options should be a hash, with the following available options:
-    # [:in]  (required) the input channel
-    # [:out] the output channel
-    #
-    def initialize(options, &block)
-      super
-      @block = block if block
-    end
-
     def call(message)
       super if allow?(message)
     end

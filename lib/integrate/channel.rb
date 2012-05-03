@@ -7,7 +7,7 @@ module Integrate
     attr_reader :dispatcher
 
     def initialize(options={})
-      super(options)
+      super
       @dispatcher = Dispatcher.new
     end
 
