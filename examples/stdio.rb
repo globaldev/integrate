@@ -1,7 +1,7 @@
 require "bundler/setup"
 
 require "integrate/channel"
-require "integrate/handlers/transformer"
+require "integrate/transformer"
 require "integrate/channel_adapters/inbound/io"
 require "integrate/channel_adapters/outbound/io"
 

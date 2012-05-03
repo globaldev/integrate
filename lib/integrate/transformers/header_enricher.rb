@@ -1,4 +1,4 @@
-require 'integrate/abstract_transformer'
+require 'integrate/transformer'
 
 module Integrate
   module Transformers
@@ -12,7 +12,7 @@ module Integrate
     # When headers need not be resolved dynamically, a Hash of static headers and
     # values may be supplied to HeaderEnricher.
     #
-    class HeaderEnricher < AbstractTransformer
+    class HeaderEnricher < Transformer
 
       def initialize(options)
         check_options(options)

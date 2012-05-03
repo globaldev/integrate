@@ -1,7 +1,7 @@
 require_relative '../helper'
 
 require 'integrate/channel'
-require 'integrate/abstract_transformer'
+require 'integrate/transformer'
 
 module Integrate
   class AbstractHandlerTest < MiniTest::Unit::TestCase
@@ -21,7 +21,7 @@ module Integrate
       output_channel.verify
     end
 
-    class PayloadUpcasingTransformer < AbstractTransformer
+    class PayloadUpcasingTransformer < Transformer
       def transform(message)
         message.dup.tap do |copy|
           copy["payload"] = message["payload"]

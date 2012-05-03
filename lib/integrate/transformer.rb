@@ -10,7 +10,7 @@ module Integrate
   # Transformer may be used without subclassing by supplying a block to ::new,
   # the block will then be invoked to perform the message transformation.
   #
-  class AbstractTransformer < AbstractHandler
+  class Transformer < AbstractHandler
 
     option :out, :output_channel, required: true
 
