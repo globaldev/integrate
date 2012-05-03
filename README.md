@@ -13,10 +13,9 @@ channels.
 
 ### Messages
 
-A Message is a generic container for data consisting of a headers and
-a payload. Headers hold commonly required
-information (e.g. id and timestamp), and the payload can be any object.
-Messages are immutable.
+A Message is a generic container for data consisting of headers and
+a payload. Headers hold commonly required information (e.g. id and timestamp),
+and the payload can be any object. Messages are immutable.
 
 ### Channels
 
@@ -34,9 +33,9 @@ manner.
 #### Transformers
 
 A Transformer allows loose-coupling of Endpoints. Transformers can be added
-between Endpoints so that no Endpoint needs to know what is expected by
-the next in a workflow. A Transformer is responsible for converting
-a Message's content or structure and returning a new, modified Message.
+between Endpoints so that no Endpoint needs to know what is expected by the
+next in a workflow. A Transformer is responsible for converting a Message's
+content or structure and returning a new, modified Message.
 
 #### Filters
 
