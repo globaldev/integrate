@@ -1,6 +1,7 @@
-require 'minitest/autorun'
+require_relative '../helper'
+
 require 'set'
-require_relative '../../lib/integrate/channel'
+require 'integrate/channel'
 
 module Integrate
   class ChannelTest < MiniTest::Unit::TestCase
@@ -30,7 +31,7 @@ module Integrate
     end
 
     def test_send
-      message = {"payload" => "test"}
+      message = { "payload" => "test" }
 
       handler = MiniTest::Mock.new
       handler.expect :hash, 3735928559
@@ -50,6 +51,7 @@ module Integrate
 
       @channel.register(subscribing_handler)
       assert_equal(Set[subscribing_handler], dispatcher.handlers)
+
       @channel.unregister(subscribing_handler)
       assert_equal(Set[], dispatcher.handlers)
     end

@@ -1,6 +1,7 @@
-require 'minitest/autorun'
-require_relative '../../../lib/integrate/handlers/filter'
-require_relative '../../../lib/integrate/channel'
+require_relative '../../helper'
+
+require 'integrate/handlers/filter'
+require 'integrate/channel'
 
 module Integrate
   class FilterTest < MiniTest::Unit::TestCase
@@ -8,12 +9,14 @@ module Integrate
     def test_instantiation
       filter = Filter.new(in: Channel.new,
                           out: Channel.new)
+
       refute_nil(filter)
     end
 
     def test_instantiation_with_block
       filter = Filter.new(in: Channel.new,
                           out: Channel.new) {}
+
       refute_nil(filter)
     end
 

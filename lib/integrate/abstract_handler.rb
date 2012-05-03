@@ -1,7 +1,7 @@
-require_relative 'component'
+require 'integrate/abstract_component'
 
 module Integrate
-  class Handler < Component
+  class AbstractHandler < AbstractComponent
 
     option :in, :input_channel, required: true
     option :out, :output_channel

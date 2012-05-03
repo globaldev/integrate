@@ -1,8 +1,8 @@
-require_relative 'component'
-require_relative 'dispatcher'
+require 'integrate/abstract_component'
+require 'integrate/dispatcher'
 
 module Integrate
-  class Channel < Component
+  class Channel < AbstractComponent
 
     attr_reader :dispatcher
 
