@@ -2,12 +2,42 @@
 
 [![Build History][2]][1]
 
-Integrate is an Integration Framework for Ruby.
+Integrate is a Ruby Integration Framework for building messaging systems
+following the [Pipes and Filters][pipes-and-filters] architectural style.
 
-- Enables lightweight messaging within Ruby applications using a
-  [Pipes and Filters][pipesandfilters] architecture.
-- Provides support for [Enterprise Integration Patterns][eaipatterns].
-- Is a work in progress.
+Using Integrate you can define a workflow to divide a large processing task
+into a sequence of smaller, independent processing steps that are connected by
+channels.
+
+## Concepts
+
+Integrate follows [Enterprise Integration Patterns][eai-patterns].
+
+### Channels
+
+Use channels to connect components, where one component writes information to
+the channel and the other one reads that information from the channel.
+
+### Messages
+
+A message is a data record that components share over a channel.
+
+### Transformers
+
+#### Content Enricher
+
+Use a Content Enricher to access an external data source in order to augment
+a message with missing information.
+
+#### Content Filter
+
+Use a Content Filter to remove unimportant data items from a message leaving
+only important items or to simplify the structure of a message.
+
+### Endpoints
+
+Use an Endpoint to connect a workflow to a messaging channel so that it can
+send and receive messages.
 
 ## Licence
 
@@ -33,7 +63,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-[pipesandfilters]: http://www.eaipatterns.com/PipesAndFilters.html "Pipes and Filters"
-[eaipatterns]: http://www.eaipatterns.com/ "Enterprise Integration Patterns"
+[pipes-and-filters]: http://www.eaipatterns.com/PipesAndFilters.html "Pipes and Filters"
+[eai-patterns]: http://www.eaipatterns.com/ "Enterprise Integration Patterns"
 [1]: http://travis-ci.org/robyoung26/integrate
 [2]: https://secure.travis-ci.org/robyoung26/integrate.png?branch=master
