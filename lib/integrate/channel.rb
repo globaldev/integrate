@@ -12,8 +12,8 @@ module Integrate
     end
 
     def register(handler)
+      logger.debug("registering #{handler.id} with #{id}") if logger
       dispatcher.register(handler)
-      # TODO Log handler registration with count.
     end
 
     def unregister(handler)

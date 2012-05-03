@@ -7,6 +7,7 @@ module Integrate
       class AMQP
         extend Options
 
+        option :id, public: true
         option :out, :output_channel, required: true
         option :queue, :queue_name, required: true
 

@@ -5,7 +5,8 @@ module Integrate
     module Outbound
       class IO
         extend Options
-
+        
+        option :id, public: true
         option :in, :input_channel, required: true
 
         # options should be a hash, with the following available options:

@@ -6,6 +6,7 @@ module Integrate
       class IO
         extend Options
 
+        option :id, public: true
         option :out, :output_channel, required: true
 
         # options should be a hash, with the following available options:

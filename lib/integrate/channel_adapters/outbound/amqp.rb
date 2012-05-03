@@ -7,6 +7,7 @@ module Integrate
       class AMQP
         extend Options
 
+        option :id, public: true
         option :in, :input_channel, required: true
         option :exchange, :exchange_name, default: ""
         option :key, :routing_key, required: true

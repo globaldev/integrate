@@ -9,6 +9,7 @@ module Integrate
     extend Options
 
     option :id, public: true, default: -> { self.class.generate_id }
+    option :logger
 
     def self.generate_id
       @counter = @counter ? @counter + 1 : 0

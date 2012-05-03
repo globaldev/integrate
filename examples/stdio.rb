@@ -1,27 +1,35 @@
 require "bundler/setup"
+require "logger"
 
 require "integrate/channel"
 require "integrate/transformer"
 require "integrate/channel_adapters/inbound/io"
 require "integrate/channel_adapters/outbound/io"
+require "integrate/workflow"
 
 include Integrate
 
-inbound    = Channel.new(id: "from_stdin")
-connecting = Channel.new(id: "connecting")
-outbound   = Channel.new(id: "to_stdout")
-
-upcaser = Transformer.new(id: "upcaser", in: inbound, out: connecting) do |message|
-  message["payload"] = message["payload"].upcase
-  message
+workflow = Workflow.new do
+  logger Logger.new(STDERR)
+  log_level :debug
+  
+  from_stdin Channel
+  connecting Channel
+  to_stdout Channel
+  
+  stdin ChannelAdapters::Inbound::IO, STDIN, out: from_stdin
+  
+  upcaser Transformer, in: from_stdin, out: connecting do |message|
+    message["payload"] = message["payload"].upcase
+    message
+  end
+  
+  reverser Transformer, in: connecting, out: to_stdout do |message|
+    message["payload"] = message["payload"].reverse
+    message
+  end
+  
+  stdout ChannelAdapters::Outbound::IO, STDOUT, in: to_stdout
 end
 
-reverser = Transformer.new(id: "reverser", in: connecting, out: outbound) do |message|
-  message["payload"] = message["payload"].reverse
-  message
-end
-
-stdin  = ChannelAdapters::Inbound::IO.new(STDIN, out: inbound)
-stdout = ChannelAdapters::Outbound::IO.new(STDOUT, in: outbound)
-
-stdin.start
+workflow.start
