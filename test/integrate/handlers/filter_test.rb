@@ -6,18 +6,20 @@ module Integrate
   class FilterTest < MiniTest::Unit::TestCase
 
     def test_instantiation
-      filter = Filter.new(in: Channel.new, out: Channel.new)
+      filter = Filter.new(in: Channel.new,
+                          out: Channel.new)
       refute_nil(filter)
     end
 
     def test_instantiation_with_block
-      filter = Filter.new(in: Channel.new, out: Channel.new) {}
-
+      filter = Filter.new(in: Channel.new,
+                          out: Channel.new) {}
       refute_nil(filter)
     end
 
     def test_filters_correctly
-      filter = Filter.new(in: Channel.new, out: Channel.new) do |message|
+      filter = Filter.new(in: Channel.new,
+                          out: Channel.new) do |message|
         message["payload"] == "TesT"
       end
 

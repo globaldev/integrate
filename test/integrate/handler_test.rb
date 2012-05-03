@@ -12,7 +12,8 @@ module Integrate
       output_channel.expect :send, true, [incoming_message]
       input_channel = Channel.new
 
-      transformer = PayloadUpcasingTransformer.new(in: input_channel, out: output_channel)
+      transformer = PayloadUpcasingTransformer.new(in: input_channel,
+                                                   out: output_channel)
 
       input_channel.send(incoming_message)
 

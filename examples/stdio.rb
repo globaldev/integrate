@@ -5,18 +5,18 @@ require_relative "../lib/integrate/channel"
 
 include Integrate
 
-inbound = Channel.new
-connecting = Channel.new
-outbound = Channel.new
+inbound = Channel.new(id: "from_stdin")
+connecting = Channel.new(id: "connecting")
+outbound = Channel.new(id: "to_stdout")
 
 stdin = Adapters::Inbound::IO.new(STDIN, out: inbound)
 
-upcaser = Transformer.new(in: inbound, out: connecting) do |message|
+upcaser = Transformer.new(id: "upcaser", in: inbound, out: connecting) do |message|
   message["payload"] = message["payload"].upcase
   message
 end
 
-reverser = Transformer.new(in: connecting, out: outbound) do |message|
+reverser = Transformer.new(id: "reverser", in: connecting, out: outbound) do |message|
   message["payload"] = message["payload"].reverse
   message
 end

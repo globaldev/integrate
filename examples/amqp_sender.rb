@@ -4,7 +4,7 @@ require_relative "../lib/integrate/channel"
 
 include Integrate
 
-received = Channel.new
+received = Channel.new(id: "amqp_received")
 
 stdin = Adapters::Inbound::IO.new(STDIN, out: received)
 

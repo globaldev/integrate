@@ -1,11 +1,13 @@
+require_relative 'component'
 require_relative 'dispatcher'
 
 module Integrate
-  class Channel
+  class Channel < Component
 
     attr_reader :dispatcher
 
-    def initialize
+    def initialize(options={})
+      super(options)
       @dispatcher = Dispatcher.new
     end
 

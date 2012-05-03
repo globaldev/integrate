@@ -1,5 +1,7 @@
+require_relative 'component'
+
 module Integrate
-  class Handler
+  class Handler < Component
 
     attr_reader :output_channel
     private :output_channel
@@ -9,6 +11,7 @@ module Integrate
     # [:out] the output channel
     #
     def initialize(options)
+      super(options)
       @output_channel = options[:out]
       options[:in].register(self)
     end
