@@ -1,10 +1,10 @@
 require 'bunny'
 
 module Integrate
-  module Adaptor
+  module Adapters
     module Inbound
       class AMQP
-        
+
         # options should be a hash, with the following available options:
         # [:out]   (required) the output channel
         # [:queue] (required) the AMQP queue to subscribe to
@@ -14,7 +14,7 @@ module Integrate
           @queue_name = options[:queue]
           @client = Bunny.new
         end
-        
+
         def start
           @client.start
           queue = @client.queue(@queue_name)
@@ -24,7 +24,7 @@ module Integrate
             @output_channel.send(message)
           end
         end
-        
+
       end
     end
   end

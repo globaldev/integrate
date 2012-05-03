@@ -1,5 +1,5 @@
-require_relative "../lib/integrate/adaptor/inbound/io"
-require_relative "../lib/integrate/adaptor/outbound/io"
+require_relative "../lib/integrate/adapters/inbound/io"
+require_relative "../lib/integrate/adapters/outbound/io"
 require_relative "../lib/integrate/handlers/transformer"
 require_relative "../lib/integrate/channel"
 
@@ -9,7 +9,7 @@ inbound = Channel.new
 connecting = Channel.new
 outbound = Channel.new
 
-stdin = Adaptor::Inbound::IO.new(STDIN, out: inbound)
+stdin = Adapters::Inbound::IO.new(STDIN, out: inbound)
 
 upcaser = Transformer.new(in: inbound, out: connecting) do |message|
   message["payload"] = message["payload"].upcase
@@ -21,6 +21,6 @@ reverser = Transformer.new(in: connecting, out: outbound) do |message|
   message
 end
 
-stdout = Adaptor::Outbound::IO.new(STDOUT, in: outbound)
+stdout = Adapters::Outbound::IO.new(STDOUT, in: outbound)
 
 stdin.start
