@@ -11,32 +11,63 @@ channels.
 
 ## Concepts
 
-Integrate follows [Enterprise Integration Patterns][eai-patterns].
-
 ### Messages
 
-A Message is a generic container for data consisting of a payload and headers
-that Message Producers and Message Consumers share over a Channel.
+A Message is a generic container for data consisting of a payload and
+headers. The payload can be of any object, headers hold commonly required
+information (e.g. id and timestamp).
 
 ### Channels
 
-Use a Channel to decouple Message Producers from Message Consumers.
-
-### Routers
-
-Use a Router to route a Message to a Channel based upon that Message's
-payload or headers.
-
-### Transformers
-
-A Transformer allows loose-coupling of Message Producers and Message Consumers
-in a Workflow. Transformers can be added between Message Producers and Message
-Consumers so that those Components need not know what is expected by the next
-Component in a workflow.
+A Channel represents the "pipe" of a [Pipes and Filters][pipes-and-filters]
+architecture. Producers send Messages to a Channel, and Consumers receive
+Messages from a Channel. A Channel decouples the messaging components.
 
 ### Endpoints
 
-Use an Endpoint to connect the various messaging Components to Channels.
+An Endpoint represents the "filter" of a
+[Pipes and Filters][pipes-and-filters] architecture. It's role is to connect
+application code to the messaging framework and to do so in a non-invasive
+manner.
+
+#### Transformers
+
+A Transformer allows loose-coupling of Endpoints. Transformers can be added
+between Endpoints so that those Endpoints need not know what is expected by
+the next Endpoints in a workflow. A Transformer is responsible for converting
+a Message's content or structure and returning the modified Message.
+
+#### Filters
+
+A Filter determines whether a Message should be passed to an output channel by
+checking for particular payload content, a property value, or the presence of
+a header.
+
+#### Routers
+
+A Router decides what Channel should receive a Message next based upon the
+Message's payload or headers.
+
+#### Splitters
+
+A Splitter accepts a Message and then splits it into multiple Messages. A
+common use case is dividing a "composite" payload object into a group of
+Messages containing the sub-divided payloads.
+
+#### Aggregators
+
+An Aggregator is the opposite or a Splitter. It receives multiple Messages and
+combines them into a single Message.
+
+#### Service Activators
+
+A Service Activator connects an external service instance to the messaging
+system.
+
+#### Channel Adapters
+
+A Channel Adapter connects a Channel to an external system or transport. They
+may be either inbound or outbound.
 
 ## Licence
 
@@ -63,6 +94,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 [pipes-and-filters]: http://www.eaipatterns.com/PipesAndFilters.html "Pipes and Filters"
-[eai-patterns]: http://www.eaipatterns.com/ "Enterprise Integration Patterns"
 [1]: http://travis-ci.org/robyoung26/integrate
 [2]: https://secure.travis-ci.org/robyoung26/integrate.png?branch=master
