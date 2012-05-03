@@ -1,31 +1,27 @@
 require 'bunny'
-require_relative '../../options'
+require 'integrate/options'
+require 'integrate/channel_adapters/outbound/abstract_outbound_channel_adapter'
 
 module Integrate
   module ChannelAdapters
     module Outbound
-      class AMQP
-        extend Options
+      class AMQP < AbstractOutboundChannelAdapter
 
-        option :id, public: true
-        option :in, :input_channel, required: true
         option :exchange, :exchange_name, default: ""
         option :key, :routing_key, required: true
 
         # options should be a hash, with the following available options:
-        # [:in]       (required) the input channel
         # [:exchange] the exchange to which messages will be published
         # [:key]      (required) the routing key for published messages
         #
         def initialize(options)
           super
 
-          input_channel.register(self)
-
           @client = Bunny.new
         end
 
         def call(message)
+          super(message)
           output = message["payload"].to_s
           exchange.publish(output, key: @routing_key,
                                    content_type: message["content_type"])

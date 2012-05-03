@@ -1,30 +1,23 @@
-require_relative '../../options'
+require 'integrate/options'
+require 'integrate/channel_adapters/outbound/abstract_outbound_channel_adapter'
 
 module Integrate
   module ChannelAdapters
     module Outbound
-      class IO
-        extend Options
-        
-        option :id, public: true
-        option :in, :input_channel, required: true
+      class IO < AbstractOutboundChannelAdapter
 
-        # options should be a hash, with the following available options:
-        # [:in] (required) the input channel
-        #
         def initialize(io, separator=$/, options)
           super(options)
-
-          input_channel.register(self)
 
           @io        = io
           @separator = separator
         end
 
         def call(message)
+          super(message)
           output = message["payload"].to_s
           output += @separator if @separator
-
+          
           @io.write(output)
         end
 

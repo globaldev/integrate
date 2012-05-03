@@ -1,17 +1,11 @@
-require_relative '../../options'
+require 'integrate/options'
+require 'integrate/channel_adapters/inbound/abstract_inbound_channel_adapter'
 
 module Integrate
   module ChannelAdapters
     module Inbound
-      class IO
-        extend Options
+      class IO < AbstractInboundChannelAdapter
 
-        option :id, public: true
-        option :out, :output_channel, required: true
-
-        # options should be a hash, with the following available options:
-        # [:out] (required) the output channel
-        #
         def initialize(io, separator=$/, options)
           super(options)
 
@@ -21,7 +15,7 @@ module Integrate
 
         def start
           while line = @io.gets(@separator)
-            @output_channel.send({"payload" => line.chomp(@separator)})
+            call({"payload" => line.chomp(@separator)})
           end
         end
 

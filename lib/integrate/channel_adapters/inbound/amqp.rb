@@ -1,18 +1,15 @@
 require 'bunny'
-require_relative '../../options'
+require 'integrate/options'
+require 'integrate/channel_adapters/inbound/abstract_inbound_channel_adapter'
 
 module Integrate
   module ChannelAdapters
     module Inbound
-      class AMQP
-        extend Options
+      class AMQP < AbstractInboundChannelAdapter
 
-        option :id, public: true
-        option :out, :output_channel, required: true
         option :queue, :queue_name, required: true
 
         # options should be a hash, with the following available options:
-        # [:out]   (required) the output channel
         # [:queue] (required) the AMQP queue to subscribe to
         #
         def initialize(options)
@@ -27,7 +24,7 @@ module Integrate
           queue.subscribe do |msg|
             message = {}
             message["payload"] = msg[:payload]
-            @output_channel.send(message)
+            call(message)
           end
         end
 
