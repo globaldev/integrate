@@ -1,15 +1,22 @@
 require "bundler/setup"
+require "logger"
 
 require "integrate/channel"
 require "integrate/channel_adapters/inbound/amqp"
 require "integrate/channel_adapters/outbound/io"
+require "integrate/workflow"
 
 include Integrate
 
-received = Channel.new(id: "stdin_received")
+workflow = Workflow.new do
+  logger Logger.new(STDERR)
+  log_level :debug
+  
+  received Channel
+  
+  amqp_receiver ChannelAdapters::Inbound::AMQP, out: received, queue: "testqueue"
+  
+  message_printer ChannelAdapters::Outbound::IO, STDOUT, in: received
+end
 
-inbound_adaptor = ChannelAdapters::Inbound::AMQP.new(out: received,
-                                                     queue: "testqueue")
-outbound_adaptor = ChannelAdapters::Outbound::IO.new(STDOUT, in: received)
-
-inbound_adaptor.start
+workflow.start
